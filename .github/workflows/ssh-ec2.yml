@@ -27,6 +27,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42
           ls
           pwd
+          docker build -t my-image:latest .
 
     #   - name: Build Docker image
     #     run: |
