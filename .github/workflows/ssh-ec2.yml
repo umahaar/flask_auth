@@ -1,0 +1,24 @@
+name: SSH into EC2 and Execute Command
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ssh_into_ec2:
+    name: SSH into EC2 Instance
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH Key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: SSH into EC2 and Execute Command
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ec2-user@<your_ec2_ip_address> 'echo "hello, world"'
