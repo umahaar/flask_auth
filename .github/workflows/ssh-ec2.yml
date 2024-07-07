@@ -11,14 +11,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Set up SSH Key
-        uses: webfactory/ssh-agent@v0.5.4
+        uses: webfactory/ssh-agent@v0.5.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            host: 18.133.175.42
+            username: ubuntu
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: SSH into EC2 and Execute Command
         run: |
-          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42> 'echo "hello, world"'
+          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42 'echo "hello, world"'
