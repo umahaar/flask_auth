@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+
       - name: Set up SSH Key
         uses: webfactory/ssh-agent@v0.5.0
         with:
@@ -20,4 +24,7 @@ jobs:
 
       - name: SSH into EC2 and Build Docker Image
         run: |
-          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42 'docker build -t my-docker-image .'
+          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42
+
+      - name: Build Docker image
+        run: docker build -t my-image:latest .
