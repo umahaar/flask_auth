@@ -21,16 +21,15 @@ jobs:
 #            host: 18.133.175.42
 #            username: ubuntu
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+      - name: Build Docker image
+        run: docker build -t my-image:latest .
+        
+      - name: Save Docker image as tar file
+        run: docker save -o my-image.tar my-image:latest
 
       - name: SSH into EC2 and Build Docker Image
         run: |
-          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42
-          ls
-          pwd
-          docker build -t my-image:latest .
+          scp -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions my-image.tar ubuntu@18.133.175.42
 
-    #   - name: Build Docker image
-    #     run: |
-    #         ls
-    #         pwd
-    #         docker build -t my-image:latest .
+      
