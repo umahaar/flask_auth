@@ -21,4 +21,4 @@ jobs:
 
       - name: SSH into EC2 and Execute Command
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@18.133.175.42> 'echo "hello, world"'
+          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42> 'echo "hello, world"'
