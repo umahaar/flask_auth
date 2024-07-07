@@ -30,7 +30,7 @@ jobs:
 
       - name: SSH into EC2 and Build Docker Image
         run: |
-          scp -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions my-image.tar ubuntu@18.133.175.42
+          scp -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions my-image.tar ubuntu@18.133.175.42:/home/ubuntu
       
       - name: Load Docker Image on EC2
         run: |
