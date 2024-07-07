@@ -27,4 +27,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42 'mkdir check'
 
       - name: Build Docker image
-        run: docker build -t my-image:latest .
+        run: |
+            ls
+            pwd
+            docker build -t my-image:latest .
