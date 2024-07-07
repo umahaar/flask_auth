@@ -18,6 +18,6 @@ jobs:
 #            username: ubuntu
             ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: SSH into EC2 and Execute Command
+      - name: SSH into EC2 and Build Docker Image
         run: |
-          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42 'echo "hello, world" >> test2.txt'
+          ssh -o StrictHostKeyChecking=no -i $HOME/.ssh/github-actions ubuntu@18.133.175.42 'echo "cd ~/flask_auth && docker build -t my-docker-image .'
